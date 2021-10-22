@@ -1,0 +1,73 @@
+@import 'base.scss';
+
+html,
+body,
+#root {
+	position: relative;
+	-webkit-font-smoothing: antialiased;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	font-size: 100%;
+	overflow-x: hidden;
+	word-wrap: break-word;
+	word-break: break-word;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#root {
+	z-index: 1;
+}
+
+a {
+	color: inherit;
+	user-select: none;
+	text-decoration: none;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+*:focus,
+*:active {
+	outline: none;
+	border: none;
+	text-decoration: none;
+}
+
+.clearfix {
+	&:before {
+		content: '';
+		display: table;
+		margin: 0;
+		padding: 0;
+	}
+
+	&:after {
+		content: '';
+		display: table;
+		margin: 0;
+		padding: 0;
+		clear: both;
+	}
+}
+
+@media print {
+	html,
+	body,
+	#appRoot {
+		overflow-x: initial;
+		height: auto;
+	}
+}
+
+@import 'style';
