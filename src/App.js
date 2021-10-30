@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import { IntlProvider } from 'react-intl'
 
 import { AuthProvider } from './context/auth'
+import { DEFAULT_LANGUAGE } from 'intl'
+import { messages } from 'intl'
 
 import AuthRoute from './util/AuthRoute'
 
@@ -12,19 +14,9 @@ import Login from './pages/Login/Login'
 import NotFound from './pages/NotFound/NotFound'
 
 import 'semantic-ui-css/semantic.min.css'
-import './App.scss'
 
-import messages_sk from './languages/sk.json'
-import messages_en from './languages/en.json'
-
-const messages = {
-	sk: messages_sk,
-	en: messages_en,
-}
-
-const language = navigator.language.split(/[-_]/)[0] // language without region code
-
-const DEFAULT_LANGUAGE = 'en'
+// language without region code
+// const language = navigator.language.split(/[-_]/)[0]
 
 const App = () => {
 	return (
