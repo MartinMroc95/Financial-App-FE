@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react'
+import classNames from 'classnames'
 import { useMutation } from '@apollo/client'
 import { useIntl } from 'react-intl'
+import { Link } from 'react-router-dom'
 
 import { useForm } from 'util/hooks'
 import { AuthContext } from 'context/auth'
@@ -9,8 +11,6 @@ import { LOGIN_USER } from 'gql/mutations'
 import { Button, Form } from 'semantic-ui-react'
 
 import classes from './Login.module.scss'
-import { Link } from 'react-router-dom'
-import classNames from 'classnames'
 
 const Login = props => {
 	const intl = useIntl()
@@ -43,44 +43,44 @@ const Login = props => {
 		props.history.push('/dashboard')
 	}
 
+	const formClassName = loading === true ? 'loading' : ''
+
 	return (
 		<div className={classes.wrapper}>
 			<div className={classes.holder}>
-				<Form onSubmit={onSubmit} noValidate className={loading === true ? 'loading' : ''}>
-					<div className={classes.title}>{intl.formatMessage({ id: 'sign_in' })} </div>
+				<Form onSubmit={onSubmit} noValidate className={formClassName}>
+					<div className={classes.title}>{intl.formatMessage({ id: 'login.sign_in' })} </div>
 					<Form.Input
-						label="Username"
-						placeholder="Type your username"
+						label={intl.formatMessage({ id: 'username' })}
+						placeholder={intl.formatMessage({ id: 'type_username' })}
 						name="username"
 						type="text"
 						error={errors.username !== undefined ? true : false}
 						value={values.username}
 						onChange={onChange}
-						className={classes.input}
 					/>
 					<Form.Input
-						label="Password"
-						placeholder="Type your password"
+						label={intl.formatMessage({ id: 'password' })}
+						placeholder={intl.formatMessage({ id: 'type_password' })}
 						name="password"
 						type="password"
 						error={errors.password !== undefined ? true : false}
 						value={values.password}
 						onChange={onChange}
-						className={classes.input}
 					/>
 					<Link
 						className={classNames(classes.link, classes['link--forgot-password'])}
 						to="/register"
 					>
-						Forgot password?
+						{intl.formatMessage({ id: 'login.forgot_password' })}
 					</Link>
 					<Button className={classes.button} type="submit" primary>
-						Login
+						{intl.formatMessage({ id: 'submit' })}
 					</Button>
 					<div className={classes['sign-up']}>
-						Not a member?
+						{intl.formatMessage({ id: 'login.not_member' })}
 						<Link className={classes.link} to="/register">
-							Signup
+							{intl.formatMessage({ id: 'login.sign_up' })}
 						</Link>
 					</div>
 				</Form>
@@ -97,7 +97,5 @@ const Login = props => {
 		</div>
 	)
 }
-
-Login.propTypes = {}
 
 export default Login
